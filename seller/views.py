@@ -5,6 +5,7 @@ from seller.forms import SellerForm
 from seller.forms import SignUpForm, LoginForm
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 
 class SellerHomeView(TemplateView):
@@ -77,3 +78,31 @@ class DeleteBikeView(DeleteView):
     template_name = "delete-bike.html"
     success_url = reverse_lazy("list-bikes")
     pk_url_kwarg = "id"
+
+
+class ChangePassword(TemplateView):
+    template_name = "change-password.html"
+
+    def post(self, request, *args, **kwargs):
+        pwd = request.POST.get("pwd")
+        uname = request.user
+        user = authenticate(request, username=uname, password=pwd)
+        if user:
+            return redirect("password-reset")
+        else:
+            return render(request, self.template_name)
+
+
+class PasswordReset(TemplateView):
+    template_name = "password-reset.html"
+
+    def post(self, request, *args, **kwargs):
+        password1 = request.POST.get("pwd1")
+        password2 = request.POST.get("pwd1")
+        if password1 != password2:
+            return render(request, self.template_name, {"msg": "Password Mismatch"})
+        else:
+            u = User.objects.get(username=request.user)
+            u.set_password(password2)
+            u.save()
+            return redirect("sign-in")

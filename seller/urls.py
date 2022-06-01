@@ -11,5 +11,7 @@ urlpatterns = [
     path('bikes/change/<int:id>', views.EditBikeView.as_view(), name="edit-bikes"),
     path('bikes/details/<int:id>', views.DetailBikeView.as_view(), name="details-bikes"),
     path('bikes/delete/<int:id>', views.DeleteBikeView.as_view(), name="delete-bikes"),
+    path('users/account/change-password', views.ChangePassword.as_view(), name="change-password"),
+    path('users/account/password-reset', views.PasswordReset.as_view(), name="password-reset"),
 
 ]
