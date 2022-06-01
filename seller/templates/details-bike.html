@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+{%block body_block%}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="card text-center">
+            <div class="card-header">
+                <h3> {{bike.company_name}} {{bike.bike_name}} </h3>
+
+            </div>
+            <div class="card-body">
+
+            </div>
+            <table class="table table-sm table-secondary">
+
+                <tbody>
+                <tr>
+                    <th scope="row">Year of Manufacture</th>
+                    <td> {{bike.year_manufa}}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Price:</th>
+                    <td>{{bike.price}}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Kilometers:</th>
+                    <td>{{bike.kilometers}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="col-3"></div>
+</div>
+{%endblock%}
+

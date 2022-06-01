@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+{%block body_block%}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <table class="table">
+            <tr>
+                <th>Company</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Price</th>
+
+            </tr>
+            {%for bike in bikes%}
+            <tr>
+                <td>{{bike.company_name}}</td>
+                <td>{{bike.bike_name}}</td>
+                <td>{{bike.year_manufa}}</td>
+                <td>{{bike.price}}</td>
+                <td>
+                    <a href="{%url 'details-bikes' bike.id%}" class="btn btn-outline-primary">View</a>
+                    <a href="{%url 'edit-bikes' bike.id%}" class="btn btn-outline-success">Edit</a>
+                    <a href="{%url 'delete-bikes' bike.id%}" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+            {%endfor%}
+
+
+        </table>
+
+
+    </div>
+    <div class="col-2"></div>
+</div>
+
+
+{%endblock%}
